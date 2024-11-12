@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using UnityEngine;
 
 namespace BrightPipe
@@ -94,7 +95,7 @@ namespace BrightPipe
             {
                 for (int yLoc = 0; yLoc < gridHeight; yLoc++)
                 {
-
+                    DrawGridBg(x + xLoc * cellDimensions + cellDimensions / 2, y + yLoc * cellDimensions + cellDimensions / 2);
                     if (pipes[xLoc, yLoc] != null)
                     {
                         pipes[xLoc, yLoc].Draw(
@@ -105,9 +106,14 @@ namespace BrightPipe
             }
         }
 
-        void DrawGridBg()
+        void DrawGridBg(float x,float y)
         {
-
+            Sprite sprite = Resources.Load<Sprite>("gfx/overlay");
+            GameObject go = new GameObject();
+            go.transform.localScale = new Vector3(78, 78, 78);
+            SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
+            renderer.sprite = sprite;
+            renderer.transform.position = new Vector3(x, y, 1);
         }
 
         public Rect GetBounds()

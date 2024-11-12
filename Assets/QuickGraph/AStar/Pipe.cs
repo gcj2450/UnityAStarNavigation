@@ -107,7 +107,7 @@ namespace BrightPipe
             GraphicPath = GraphicPath.Replace(".png", "");
             Sprite sprite = Resources.Load<Sprite>(GraphicPath);
             GameObject go = new GameObject();
-            go.transform.localScale = new Vector3(10, 10, 10);
+            go.transform.localScale = new Vector3(78, 78, 78);
             SpriteRenderer renderer= go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.transform.position = new Vector3(x, y, 0);
