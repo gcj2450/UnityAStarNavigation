@@ -13,37 +13,67 @@ namespace BrightPipe
             Location = location;
         }
 
+        /// <summary>
+        /// Sets the parent AStar node.
+        /// </summary>
+        /// <param name="parent"></param>
         public void SetParent(AStarNode parent)
         {
             Parent = parent;
         }
 
+        /// <summary>
+        ///  Gets the parent A Star node.
+        /// </summary>
+        /// <returns></returns>
         public AStarNode GetParent()
         {
             return Parent;
         }
 
+        /// <summary>
+        /// Gets the net score of the current node respective to a specified location.
+        /// </summary>
+        /// <param name="start">The location that you are attempting to reach this node from.</param>
+        /// <returns></returns>
         public int GetScore(Vector2Int start)
         {
             return GetFScore(start) + GetGScore();
         }
 
+        /// <summary>
+        /// Gets the F-Score (approximate distance) respective to a particular location.
+        /// </summary>
+        /// <param name="start">The location you are attempting to reach this node from.</param>
+        /// <returns></returns>
         public int GetFScore(Vector2Int start)
         {
             Vector2Int difference = Location - start;
             return Mathf.Abs(difference.x) + Mathf.Abs(difference.y);
         }
 
+        /// <summary>
+        /// Gets the GScore (approximate number of steps traveresed to reach this node.)
+        /// </summary>
+        /// <returns></returns>
         public int GetGScore()
         {
             return 1 + (Parent == null ? 0 : Parent.GetGScore());
         }
 
+        /// <summary>
+        /// Gets the node location.
+        /// </summary>
+        /// <returns></returns>
         public Vector2Int GetLocation()
         {
             return Location;
         }
 
+        /// <summary>
+        /// Gets an array of directions required to traverse the path this node is apart of.
+        /// </summary>
+        /// <returns></returns>
         public List<Direction> GetDirections()
         {
             List<Direction> directions = new List<Direction>();
@@ -65,6 +95,10 @@ namespace BrightPipe
             return directions;
         }
 
+        /// <summary>
+        /// Gets an array of pipes required to traverse this path.
+        /// </summary>
+        /// <returns></returns>
         public List<Pipe> GetPipes()
         {
             List<Direction> directions = GetDirections();
@@ -115,6 +149,11 @@ namespace BrightPipe
             return pipes;
         }
 
+        /// <summary>
+        /// Tests whether two nodes, if placed in the same path, are equal.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(AStarNode other)
         {
             return other != null && Location == other.GetLocation();

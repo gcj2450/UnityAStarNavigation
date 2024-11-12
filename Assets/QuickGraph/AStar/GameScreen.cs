@@ -10,7 +10,7 @@ namespace BrightPipe
     public class GameScreen : MonoBehaviour
     {
         private int score;
-        private int level;
+        public int level;
         private List<Achievement> achievements;
         private const int PUMP_INTERVAL_DEFAULT = 4000;
         private const int CELL_DIMENSIONS = 50;
@@ -51,6 +51,7 @@ namespace BrightPipe
         private void Start()
         {
             NewGame(this.width, this.height, this.score - this.pipesPlaced * 2, this.level + 1);
+            grid.Draw( this.GRID_LOCATION.x, this.GRID_LOCATION.y);
         }
 
         public void NewGame(int width, int height, /*ScreenController screenController,*/ int score = 0, int level = 1/*, List<Achievement> achievements = null*/)
@@ -244,6 +245,11 @@ namespace BrightPipe
             }
 
             return solvable;
+        }
+
+        private void OnDrawGizmos()
+        {
+            
         }
 
         //void refreshPipeSelection()

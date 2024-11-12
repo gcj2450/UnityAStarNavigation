@@ -91,7 +91,7 @@ namespace BrightPipe
             return smallest;
         }
 
-        private bool IsWalkable(AStarNode toNode, Vector2 dest, AStarNode fromNode = null)
+        private bool IsWalkable(AStarNode toNode, Vector2Int dest, AStarNode fromNode = null)
         {
             if (toNode.Location.Equals(dest))
                 return true;

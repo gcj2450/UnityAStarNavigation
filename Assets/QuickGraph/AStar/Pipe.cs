@@ -14,7 +14,7 @@ namespace BrightPipe
         public bool CanLeak { get; private set; }
 
         public int Value { get; }
-        public string GraphicPath { get; }
+        public string GraphicPath { get; set; }
         public List<Direction> Directions { get; }
         public bool IsPump { get; set; }
 
@@ -101,9 +101,14 @@ namespace BrightPipe
             }
         }
 
-        public void Draw(SpriteRenderer renderer, float x, float y)
+        public void Draw(float x, float y)
         {
+            Debug.Log($"Draw:{GraphicPath}");
+            GraphicPath = GraphicPath.Replace(".png", "");
             Sprite sprite = Resources.Load<Sprite>(GraphicPath);
+            GameObject go = new GameObject();
+            go.transform.localScale = new Vector3(10, 10, 10);
+            SpriteRenderer renderer= go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.transform.position = new Vector3(x, y, 0);
         }

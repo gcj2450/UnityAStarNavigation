@@ -88,20 +88,26 @@ namespace BrightPipe
             return new Vector2(location.x * cellDimensions, location.y * cellDimensions);
         }
 
-        public void Draw(SpriteRenderer renderer, float x, float y)
+        public void Draw(float x, float y)
         {
             for (int xLoc = 0; xLoc < gridWidth; xLoc++)
             {
                 for (int yLoc = 0; yLoc < gridHeight; yLoc++)
                 {
+
                     if (pipes[xLoc, yLoc] != null)
                     {
-                        pipes[xLoc, yLoc].Draw(renderer,
+                        pipes[xLoc, yLoc].Draw(
                             x + xLoc * cellDimensions + cellDimensions / 2,
                             y + yLoc * cellDimensions + cellDimensions / 2);
                     }
                 }
             }
+        }
+
+        void DrawGridBg()
+        {
+
         }
 
         public Rect GetBounds()
