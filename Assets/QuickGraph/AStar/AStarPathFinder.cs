@@ -87,12 +87,18 @@ namespace BrightPipe
             List<AStarNode> path = new List<AStarNode>();
             AStarNode currentNode = endNode;
 
-            while (currentNode.Parent != null)
+            while (currentNode != null)
             {
                 path.Add(currentNode);
                 currentNode = currentNode.Parent;
 
             }
+
+            foreach (var item in path)
+            {
+                Debug.Log(item.Location);
+            }
+
             return path;
         }
 

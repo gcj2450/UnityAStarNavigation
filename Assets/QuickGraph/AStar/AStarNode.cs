@@ -78,6 +78,18 @@ namespace BrightPipe
             return Location;
         }
 
+        public List<AStarNode>GetNodes()
+        {
+            List<AStarNode> nodes = new List<AStarNode>();
+            AStarNode currentNode = this;
+            while (currentNode != null)
+            {
+                nodes.Add(currentNode);
+                currentNode = currentNode.GetParent();
+            }
+            return nodes;
+        }
+
         /// <summary>
         /// Gets an array of directions required to traverse the path this node is apart of.
         /// </summary>
