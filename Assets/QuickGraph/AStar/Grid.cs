@@ -152,6 +152,7 @@ namespace BrightPipe
             }
         }
 
+        public Dictionary<string,GameObject> GridBgs = new Dictionary<string, GameObject>();
         /// <summary>
         /// 绘制Grid背景
         /// </summary>
@@ -165,6 +166,7 @@ namespace BrightPipe
             GameObject go = new GameObject();
             go.transform.localScale = new Vector3(78, 78, 78);
             go.name = $"{xId}_{yId}";
+            GridBgs[go.name] =go;
             SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.transform.position = new Vector3(xPos, yPos, 1);

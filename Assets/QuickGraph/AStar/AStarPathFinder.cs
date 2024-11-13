@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BrightPipe
@@ -58,13 +59,15 @@ namespace BrightPipe
 
                 if (smallestScore.Location.Equals(end))
                 {
+                    Debug.Log($"Find Result: {smallestScore.Location}, {smallestScore.Parent.Location}");
+                    RetracePath(smallestScore);
                     return smallestScore;
                 }
                 var possibleDirections = GetPossibleDirections(smallestScore);
 
                 //使用for比foreach性能更好
                 //foreach (var d in possibleDirections)
-                for (int x = 0,cnt= possibleDirections.Count; x < cnt; x++)
+                for (int x = 0, cnt = possibleDirections.Count; x < cnt; x++)
                 {
                     var d = possibleDirections[x];
                     var movement = new AStarNode(smallestScore, smallestScore.Location + d.Delta);
@@ -77,6 +80,20 @@ namespace BrightPipe
             }
             Debug.Log($"Find Path: {open.Count}");
             return null;
+        }
+
+        List<AStarNode> RetracePath(AStarNode endNode)
+        {
+            List<AStarNode> path = new List<AStarNode>();
+            AStarNode currentNode = endNode;
+
+            while (currentNode.Parent != null)
+            {
+                path.Add(currentNode);
+                currentNode = currentNode.Parent;
+
+            }
+            return path;
         }
 
         /// <summary>

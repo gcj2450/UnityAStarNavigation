@@ -51,7 +51,7 @@ namespace BrightPipe
         private void Start()
         {
             NewGame(this.width, this.height, this.score - this.pipesPlaced * 2, this.level + 1);
-            grid.Draw( this.GRID_LOCATION.x, this.GRID_LOCATION.y);
+            grid.Draw(this.GRID_LOCATION.x, this.GRID_LOCATION.y);
         }
 
         public void NewGame(int width, int height, /*ScreenController screenController,*/ int score = 0, int level = 1/*, List<Achievement> achievements = null*/)
@@ -69,6 +69,7 @@ namespace BrightPipe
 
             //this.pipeSelection = new PipeSelectionQueue();
             this.grid = new Grid(CELL_DIMENSIONS, 6, 7);
+
             this.drains = new List<Pipe>();
             this.pump = Pipes.Pump.Create();
 
