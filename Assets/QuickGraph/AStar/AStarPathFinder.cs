@@ -32,18 +32,18 @@ namespace BrightPipe
         }
 
         /// <summary>
-        /// Attempts to find a path between two specified points in the game grid.
+        /// 查找路径
         /// </summary>
-        /// <param name="start">The start of the path</param>
-        /// <param name="end">The location you want to path to.</param>
-        /// <param name="toDirection"></param>
-        /// <returns>An AStarNode equal to the end location or null if no path could be found.</returns>
+        /// <param name="start">起点位置</param>
+        /// <param name="end">目标点位置.</param>
+        /// <param name="toDirection">起点的起始方向</param>
+        /// <returns>目标点位置的节点值或空值，如果找不到路径就是空.</returns>
         public AStarNode FindPath(Vector2Int start, Vector2Int end, Direction toDirection = null)
         {
             var open = new List<AStarNode>();
             var closed = new HashSet<AStarNode>();
 
-            var startNode = new AStarNode(null, start + (toDirection?.Delta ?? Vector2Int.zero));
+            AStarNode startNode = new AStarNode(null, start + (toDirection?.Delta ?? Vector2Int.zero));
             Debug.Log($"FindPath, start: {start}, end: {end}");
             if (!IsWalkable(startNode, end, toDirection == null ? null : new AStarNode(null, start)))
                 return null;
@@ -132,15 +132,15 @@ namespace BrightPipe
             AStarNode smallest = null;
 
             //foreach (var n in adjacent)
-            for (var i = 0; i < adjacent.Count; i++)
+            for (int i = 0; i < adjacent.Count; i++)
             {
-                var n = adjacent[i];
+                AStarNode tmpNode = adjacent[i];
 
-                float fValue = n.GetScore(start);
+                float fValue = tmpNode.GetScore(start);
 
                 if (fValue < smallestScore)
                 {
-                    smallest = n;
+                    smallest = tmpNode;
                     smallestScore = fValue;
                 }
             }
@@ -163,7 +163,7 @@ namespace BrightPipe
             if (!grid.GetCellBounds().Contains(toNode.Location))
                 return false;
 
-            var pipe = grid.GetPipe(toNode.Location);
+            Pipe pipe = grid.GetPipe(toNode.Location);
 
             if (pipe == null || pipe.CanReplace())
                 return true;
