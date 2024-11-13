@@ -48,6 +48,10 @@ namespace BrightPipe
             return array;
         }
 
+        /// <summary>
+        /// 所有三通管道
+        /// </summary>
+        /// <returns></returns>
         public static List<Pipe> ComplexValues()
         {
             return new List<Pipe> { LeftRightDown, LeftRightUp, LeftUpDown, RightUpDown };

@@ -57,13 +57,14 @@ namespace BrightPipe
                 var smallestScore = SmallestScore(open, end);
 
                 if (smallestScore.Location.Equals(end))
+                {
                     return smallestScore;
-
+                }
                 var possibleDirections = GetPossibleDirections(smallestScore);
 
                 //使用for比foreach性能更好
                 //foreach (var d in possibleDirections)
-                for (var x = 0; x < possibleDirections.Count; x++)
+                for (int x = 0,cnt= possibleDirections.Count; x < cnt; x++)
                 {
                     var d = possibleDirections[x];
                     var movement = new AStarNode(smallestScore, smallestScore.Location + d.Delta);
