@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+
 namespace BrightPipe
 {
+    //已和Js版本完全一致
     public class AStarNode
     {
+        /// <summary>
+        /// 父节点, The steps previous to this steps.
+        /// </summary>
         public AStarNode Parent { get; private set; }
+        /// <summary>
+        /// 位置
+        /// </summary>
         public Vector2Int Location { get; private set; }
 
         public AStarNode(AStarNode parent, Vector2Int location)

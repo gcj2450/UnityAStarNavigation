@@ -649,7 +649,7 @@ namespace BrightPipe
 
         //    var pipeCentreLocation = this.GRID_LOCATION.add(this.grid.gridToScreen(pipe.getLocation().add(new Vector(0.5, 0.5))));
 
-        //    var fillDirections = this.getFillDirections(pipe);
+        //    var fillDirections = this.GetFillDirections(pipe);
         //    var drainDirections = this.getDrainDirections(pipe);
 
         //    g.lineWidth = 8;
@@ -685,7 +685,7 @@ namespace BrightPipe
         //    g.beginPath();
         //}
 
-        List<Direction> getFillDirections(Pipe pipe)
+        List<Direction> GetFillDirections(Pipe pipe)
         {
             var connections = pipe.GetConnections(null);
             List<Direction> fillDirections = new List<Direction>();
@@ -704,7 +704,7 @@ namespace BrightPipe
 
         List<Direction> GetDrainDirections(Pipe pipe)
         {
-            var fillDirections = this.getFillDirections(pipe);
+            var fillDirections = GetFillDirections(pipe);
             var allDirections = pipe.GetDirections();
             List<Direction> drainDirections = new List<Direction>();
 

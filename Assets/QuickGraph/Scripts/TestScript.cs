@@ -13,6 +13,8 @@ public class TestScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vector2 ss = new Vector2(-3, 5);
+        Debug.Log(ss * -1);
         Debug.Log("test log");
 
         TestGraph = new AdjacencyGraph<int, Edge<int>>();

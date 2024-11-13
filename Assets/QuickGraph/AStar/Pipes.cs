@@ -26,7 +26,7 @@ namespace BrightPipe
         public static readonly Pipe LeftRightUp = new Pipe(16, "gfx/leftRightUp.png", new List<Direction> { Direction.Up, Direction.Left, Direction.Right }, LeftRightUp, false);
         public static readonly Pipe LeftUpDown = new Pipe(17, "gfx/leftUpDown.png", new List<Direction> { Direction.Down, Direction.Left, Direction.Up }, LeftUpDown, false);
         public static readonly Pipe RightUpDown = new Pipe(18, "gfx/rightUpDown.png", new List<Direction> { Direction.Down, Direction.Up, Direction.Right }, RightUpDown, false);
-        public static readonly Pipe CrossPipe = new Pipe(19, "gfx/crossPipe.png", new List<Direction> { Direction.Down, Direction.Up, Direction.Right, Direction.Left }, RightUpDown, false);//这里不知道为啥是RightUpDown
+        public static readonly Pipe CrossPipe = new Pipe(19, "gfx/crossPipe.png", new List<Direction> { Direction.Down, Direction.Up, Direction.Right, Direction.Left }, CrossPipe, false);//这里不知道为啥是RightUpDown
 
         public static List<Pipe> Values(bool includeComplex)
         {
@@ -56,15 +56,15 @@ namespace BrightPipe
         public static List<Pipe> Obstacles()
         {
             return new List<Pipe>
-        {
-            Obstacle,
-            FixedVertical,
-            FixedHorizontal,
-            FixedRightDown,
-            FixedLeftDown,
-            FixedRightUp,
-            FixedLeftUp
-        };
+            {
+                Obstacle,
+                FixedVertical,
+                FixedHorizontal,
+                FixedRightDown,
+                FixedLeftDown,
+                FixedRightUp,
+                FixedLeftUp
+            };
         }
     }
 

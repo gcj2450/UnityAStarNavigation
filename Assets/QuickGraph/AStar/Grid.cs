@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using UnityEngine;
 
 namespace BrightPipe
 {
+    //已和Js版本完全一致
+    /// <summary>
+    /// Grid used to store an arrangement of pipes
+    /// </summary>
     public class Grid
     {
         private int gridWidth;
@@ -20,17 +23,31 @@ namespace BrightPipe
             pipes = new Pipe[gridWidth, gridHeight];
         }
 
+        /// <summary>
+        /// Cell dimensions 
+        /// </summary>
+        /// <returns></returns>
         public float GetCellDimensions()
         {
             return cellDimensions;
         }
 
+        /// <summary>
+        /// Tests if a specified location is a valid grid location.
+        /// </summary>
+        /// <param name="location">Location to test if valid</param>
+        /// <returns>Whether the specified grid location is valid.</returns>
         public bool ValidateLocation(Vector2Int location)
         {
             return location.x >= 0 && location.y >= 0 &&
                    location.x < gridWidth && location.y < gridHeight;
         }
 
+        /// <summary>
+        /// Gets a pipe at a specified grid location.
+        /// </summary>
+        /// <param name="location">Location to retrieve pipe from</param>
+        /// <returns>Pipe at the specified location or null if location is empty.</returns>
         public Pipe GetPipe(Vector2Int location)
         {
             if (!ValidateLocation(location))
@@ -39,6 +56,11 @@ namespace BrightPipe
             return pipes[location.x, location.y];
         }
 
+        /// <summary>
+        /// Sets the pipe at a specified location.
+        /// </summary>
+        /// <param name="location">Location to place a pipe.</param>
+        /// <param name="pipe">The pipe to place at the specified location.</param>
         public void SetPipe(Vector2Int location, Pipe pipe)
         {
             if (!ValidateLocation(location))
@@ -54,12 +76,20 @@ namespace BrightPipe
             }
         }
 
+        /// <summary>
+        /// Clears a pipe at a specified grid location.
+        /// </summary>
+        /// <param name="location">Location at which to clear the pipe/contents of.</param>
         public void ClearPipe(Vector2Int location)
         {
             pipes[location.x, location.y]?.Detach();
             pipes[location.x, location.y] = null;
         }
 
+        /// <summary>
+        /// Removes all instances of the specified pipe from the grid.
+        /// </summary>
+        /// <param name="pipe"></param>
         public void RemovePipe(Pipe pipe)
         {
             for (int x = 0; x < gridWidth; x++)
@@ -72,6 +102,12 @@ namespace BrightPipe
             }
         }
 
+        /// <summary>
+        /// 将世界位置转为格子位置
+        /// </summary>
+        /// <param name="location">Location to be translated in grid space.</param>
+        /// <returns>Translated location.</returns>
+        /// <exception cref="Exception"></exception>
         public Vector2Int ScreenToGrid(Vector2 location)
         {
             var translation = new Vector2Int(
@@ -84,11 +120,21 @@ namespace BrightPipe
             return translation;
         }
 
+        /// <summary>
+        /// 将格子位置转为世界位置
+        /// </summary>
+        /// <param name="location">The location to translate to screen space.</param>
+        /// <returns>The translated location.</returns>
         public Vector2 GridToScreen(Vector2Int location)
         {
             return new Vector2(location.x * cellDimensions, location.y * cellDimensions);
         }
 
+        /// <summary>
+        /// Draws the grid.
+        /// </summary>
+        /// <param name="x">The x draw offset.</param>
+        /// <param name="y">The y draw offset.</param>
         public void Draw(float x, float y)
         {
             for (int xLoc = 0; xLoc < gridWidth; xLoc++)
@@ -106,6 +152,11 @@ namespace BrightPipe
             }
         }
 
+        /// <summary>
+        /// 绘制Grid背景
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         void DrawGridBg(float x,float y)
         {
             Sprite sprite = Resources.Load<Sprite>("gfx/overlay");
@@ -116,16 +167,28 @@ namespace BrightPipe
             renderer.transform.position = new Vector3(x, y, 1);
         }
 
+        /// <summary>
+        /// Gets the screen space bounds of grid.
+        /// </summary>
+        /// <returns>The screen space bounds of grid.</returns>
         public Rect GetBounds()
         {
             return new Rect(Vector2.zero, new Vector2(gridWidth * cellDimensions, gridHeight * cellDimensions));
         }
 
+        /// <summary>
+        /// Gets the bounds of the grid, in terms of cells.
+        /// </summary>
+        /// <returns>The bounds of the grid, in terms of cells.</returns>
         public Rect GetCellBounds()
         {
             return new Rect(Vector2.zero, new Vector2(gridWidth, gridHeight));
         }
 
+        /// <summary>
+        /// Gets a list of all filled pipes in the grid.
+        /// </summary>
+        /// <returns>all filled pipes in the grid</returns>
         public List<Pipe> GetFilledPipes()
         {
             var filledPipes = new List<Pipe>();
@@ -136,10 +199,19 @@ namespace BrightPipe
                 if (pipe != null && pipe.IsFilled())
                     filledPipes.Add(pipe);
             }
+            //for (var i = 0; i < allPipes.Count; i++)
+            //{
+            //    if (allPipes[i] != null && allPipes[i].IsFilled())
+            //        filledPipes.Add(allPipes[i]);
+            //}
 
             return filledPipes;
         }
 
+        /// <summary>
+        /// Array of pipes that were filled in this pump cycle.
+        /// </summary>
+        /// <returns></returns>
         public List<Pipe> Pump()
         {
             var pipesFilledBeforePump = GetFilledPipes();
