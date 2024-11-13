@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BaiduPathFinding
+namespace SebLaguePathfinding
 {
 	public class Grid : MonoBehaviour
 	{

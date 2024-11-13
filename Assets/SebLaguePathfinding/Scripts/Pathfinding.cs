@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System;
-namespace BaiduPathFinding
+namespace SebLaguePathfinding
 {
 	public class Pathfinding : MonoBehaviour
 	{

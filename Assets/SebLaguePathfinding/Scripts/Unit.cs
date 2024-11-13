@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace BaiduPathFinding
+namespace SebLaguePathfinding
 {
 	public class Unit : MonoBehaviour
 	{
