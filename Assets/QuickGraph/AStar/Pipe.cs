@@ -103,7 +103,7 @@ namespace BrightPipe
 
         public void Draw(float x, float y)
         {
-            Debug.Log($"Draw:{GraphicPath}");
+            //Debug.Log($"Draw:{GraphicPath}");
             GraphicPath = GraphicPath.Replace(".png", "");
             Sprite sprite = Resources.Load<Sprite>(GraphicPath);
             GameObject go = new GameObject();

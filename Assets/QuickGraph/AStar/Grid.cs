@@ -141,7 +141,7 @@ namespace BrightPipe
             {
                 for (int yLoc = 0; yLoc < gridHeight; yLoc++)
                 {
-                    DrawGridBg(x + xLoc * cellDimensions + cellDimensions / 2, y + yLoc * cellDimensions + cellDimensions / 2);
+                    DrawGridBg(x + xLoc * cellDimensions + cellDimensions / 2, y + yLoc * cellDimensions + cellDimensions / 2, xLoc, yLoc);
                     if (pipes[xLoc, yLoc] != null)
                     {
                         pipes[xLoc, yLoc].Draw(
@@ -155,16 +155,19 @@ namespace BrightPipe
         /// <summary>
         /// 绘制Grid背景
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        void DrawGridBg(float x,float y)
+        /// <param name="xPos"></param>
+        /// <param name="yPos"></param>
+        /// <param name="xId"></param>
+        /// <param name="yId"></param>
+        void DrawGridBg(float xPos,float yPos,int xId,int yId)
         {
             Sprite sprite = Resources.Load<Sprite>("gfx/overlay");
             GameObject go = new GameObject();
             go.transform.localScale = new Vector3(78, 78, 78);
+            go.name = $"{xId}_{yId}";
             SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
-            renderer.transform.position = new Vector3(x, y, 1);
+            renderer.transform.position = new Vector3(xPos, yPos, 1);
         }
 
         /// <summary>

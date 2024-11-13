@@ -21,7 +21,7 @@ namespace BrightPipe
         private int achievementTimeout;
         private Achievement lastAchievement;
 
-        private Vector2 GRID_LOCATION = new Vector2(30, 35);
+        private Vector2 GRID_LOCATION = new Vector2(0, 0);
         private Vector2 PIPE_SELECTION_LOCATION = new Vector2(53, 300);
         private Vector2 SETTINGS_LOCATION = new Vector2(0, 10);
 
@@ -234,6 +234,10 @@ namespace BrightPipe
             } while (!IsLevelSolvable());
         }
 
+        /// <summary>
+        /// Tests whether the level is solvable in its current state.
+        /// </summary>
+        /// <returns></returns>
         bool IsLevelSolvable()
         {
             var pathFinder = new AStarPathFinder(this.grid);

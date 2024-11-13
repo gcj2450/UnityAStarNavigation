@@ -43,7 +43,7 @@ namespace BrightPipe
             var closed = new HashSet<AStarNode>();
 
             var startNode = new AStarNode(null, start + (toDirection?.Delta ?? Vector2Int.zero));
-
+            Debug.Log($"FindPath, start: {start}, end: {end}");
             if (!IsWalkable(startNode, end, toDirection == null ? null : new AStarNode(null, start)))
                 return null;
 
@@ -74,7 +74,7 @@ namespace BrightPipe
                 closed.Add(smallestScore);
                 open.Remove(smallestScore);
             }
-
+            Debug.Log($"Find Path: {open.Count}");
             return null;
         }
 
